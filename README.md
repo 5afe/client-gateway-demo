@@ -1,20 +1,46 @@
-This tutorial will demonstrate how to use https://safe-client.safe.global/api#/ to assist interact programmatically with your account and how to migrate from using the https://github.com/safe-global/safe-transaction-service
+# Safe Client API Tutorial
 
-Previously users where using the https://github.com/safe-global/safe-transaction-service either directly or in conjunction with https://www.npmjs.com/package/@safe-global/api-kit.
+## Introduction
 
-The following article will provide a quick introduction to learn how to:
+This tutorial demonstrates how to use the [Safe Client API](https://safe-client.safe.global/api#/) to interact programmatically with your Safe account and how to migrate from using the [Safe Transaction Service](https://github.com/safe-global/safe-transaction-service).
+
+Previously, users were using the [Safe Transaction Service](https://github.com/safe-global/safe-transaction-service) either directly or in conjunction with the [@safe-global/api-kit](https://www.npmjs.com/package/@safe-global/api-kit) npm package.
+
+## What You'll Learn
+
+This guide provides a quick introduction to:
 
 - Verify if a chain is available
 - Fetch information about a Safe
 - Fetch the transaction history
-- Fetch the pending transaction
+- Fetch pending transactions
 - Propose a transaction
 - Sign a transaction
-- and finally execute it
+- Execute a transaction
 
-First let's study the base URL structure, a new transaction service with a specific URL was created for each chain with the following pattern `https://safe-transaction-<networkName>.safe.global` for example [https://safe-transaction-polygon.safe.global](https://safe-transaction-polygon.safe.global/) (It will lead to a 404 for now). Notice that the URL holds the chain name therefore the data will only come from one chain.
+## API URL Structure
 
-With the Safe Client API the URL is chain agnostic [`https://safe-client.safe.global/api#/`](https://safe-client.safe.global/api#/) and the `chainId` will be passed as a parameter to the endpoint you are querying.
+### Previous Transaction Service
+
+Previously, a new transaction service with a specific URL was created for each chain with the following pattern:
+
+```
+https://safe-transaction-<networkName>.safe.global
+```
+
+For example: [https://safe-transaction-polygon.safe.global](https://safe-transaction-polygon.safe.global/)
+
+Notice that the URL holds the chain name, therefore the data will only come from one chain.
+
+### New Safe Client API
+
+With the Safe Client API, the URL is chain agnostic:
+
+```
+https://safe-client.safe.global/api#/
+```
+
+The `chainId` will be passed as a parameter to the endpoint you are querying, making it more flexible and consistent across different chains.
 
 ## Verifying Chain Availability
 
