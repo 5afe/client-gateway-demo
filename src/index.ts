@@ -1,7 +1,7 @@
 import { formatEther, parseEther, type Hash } from 'viem';
 import { SafeClient, type SafeTransactionData } from './safe-client';
 import { privateKeyToAccount } from 'viem/accounts';
-import Safe from '@safe-global/protocol-kit';
+import Safe, { SigningMethod } from '@safe-global/protocol-kit';
 import { gnosis } from 'viem/chains';
 import { parse } from 'path';
 import type { MetaTransactionData } from '@safe-global/types-kit';
@@ -66,7 +66,7 @@ async function exampleWorkflow() {
         const safeTxHash = await protocolKit.getTransactionHash(safeTransaction);
 
         // Step 7: Sign the transaction with the first owner's private key
-        const signature = await protocolKit.signTransaction(safeTransaction);
+        const signature = await protocolKit.signTransaction(safeTransaction, SigningMethod.ETH_SIGN_TYPED_DATA_V4);
         // Step 8: Propose the transaction to the Safe
         const proposalData = {
             to: safeTransaction.data.to,
